@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script> 
+$(document).ready(function(){
+	$.ajaxSetup({contentType:"application/json; charset=utf-8"});
+		$("#post").click(function(){  
+	    var alumno={matricula:$("#matricula").val(), nombre:$("#nombre").val(), carrera:$("#carrera").val()};
+	    var alumnoJSON=JSON.stringify(alumno);
+	    console.log("Alumno= "+alumnoJSON);
+	    
+	    $.post("http://localhost:8080/alumnos",alumnoJSON,function(data,status){
+		    console.log("Alumno= "+data.creado);
+		    alert('alumno registrado');
+		    
+	    });
+  	});
+		
+	$("#get").click(function(){
+		var url="http://localhost:8080/alumnos/"+$("#matricula2").val();
+		console.log(url);
+		
+		$.get(url,function(data,status){
+			console.log("Status= "+status);
+			document.getElementById("recupera").innerHTML=("el alumno recuperado es-->  Nombre:"+data.nombre+",Matricula:"+data.matricula+",Carrera:"+data.carrera);
+		} );
+	});
+	
+});	
+</script>
+</head>
+<body>
+
+	<h1>Resgistrar alumno</h1>
+
+
+   <label >Matricula:</label>
+   <input id="matricula" type="text"><br><br>
+   <label >Nombre</label>
+   <input id="nombre" type="text"><br><br>
+   <label >Carrera</label>
+   <input id="carrera"type="text"><br><br>
+   <button id="post">Registra</button>
+   <p id="registro"></p>
+   
+ 
+   <h1>Recupera alumno</h1>
+   <label >Matricula:</label>
+   <input id="matricula2" type="text"><br><br>
+   <button id="get" >Recupera</button>
+   <p id="recupera"></p>
+
+
+</body>
+
+
+
+</html>
