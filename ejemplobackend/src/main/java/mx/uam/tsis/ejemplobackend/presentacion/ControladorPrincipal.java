@@ -12,7 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 public class ControladorPrincipal {
 	@GetMapping("/")
 	public String index() {
-		//log.info("jccjcjc");
+		log.info("jccjcjc");
 		return "index";
 	}
 	
