@@ -69,14 +69,14 @@ public class AlumnoController {
 		
 	}
 
-	/*
+	
 	@ApiOperation(
 			value="Recupera un alumno",
 			notes="Permite recuperar un alumno con su matricula, la matricula dbe corresponder a un alumno previamente registrado")
 	@GetMapping(path = "/alumnos/{matricula}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity <?> retrieve(@Valid @PathVariable ("matricula") Integer matricula) {
 		log.info("Buscando al alumno con matricula "+matricula);
-		Optional<Alumno> alumno=alumnoService.retrieve(matricula);
+		Alumno alumno=alumnoService.retrieve(matricula);
 		if(alumno != null) {
 			return ResponseEntity.status(HttpStatus.OK).body(alumno);
 		} else {
@@ -86,13 +86,13 @@ public class AlumnoController {
 		
 	}
 	
-*/
-	/*@ApiOperation(
+
+	@ApiOperation(
 			value="Modifica alumno",
 			notes="Permite modificar los datos de un alumno, Se necesita la matricula del alumno y un objeto con todos los datos del alumno")
 	@PutMapping(path = "/alumnos/{matricula}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> update(@Valid @PathVariable("matricula") Integer matricula,@RequestBody  @Valid Alumno nuevoAlumno ) {
-		Alumno alumno = alumnoService.(matricula, nuevoAlumno);
+		Alumno alumno = alumnoService.update(matricula, nuevoAlumno);
 		System.out.println("ALUMNO"+alumno);
 		if(alumno != null) {
 			return ResponseEntity.status(HttpStatus.OK).body(alumno);
@@ -100,16 +100,16 @@ public class AlumnoController {
 			return ResponseEntity.status(HttpStatus.CONFLICT).build();
 		}
 		
-	}*/
+	}
 	
-	/*
+	
 	@ApiOperation(
 			value="Borra alumno",
 			notes="Permite borrar un alumno de nuestra base de datos. Requiere la matricula del alumno.")
 	@DeleteMapping(path="/alumnos/{matricula}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity <?>delete(@Valid @PathVariable("matricula") Integer matricula) {
-		Alumno alumno = alumnoService.borra(matricula);
-		if(alumno!=null) {
+		Boolean alumno = alumnoService.delete(matricula);
+		if(alumno==true) {
 			return ResponseEntity.status(HttpStatus.OK).body("ha sido eliminado: "+alumno);
 		}else {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
@@ -117,6 +117,6 @@ public class AlumnoController {
 		
 		
 	}
-	*/
+	
  
 }

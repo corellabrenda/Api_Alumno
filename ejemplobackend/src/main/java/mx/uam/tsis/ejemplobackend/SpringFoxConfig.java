@@ -32,10 +32,10 @@ public class SpringFoxConfig {
 	private ApiInfo apiInfo() {
 	    return new ApiInfo(
 	      "Mi primer API REST", 
-	      "Ejemplo de API del curso TSIS", 
+	      "Ejemplo de API Rest de un Alumno del curso TSIS", 
 	      "API TOS", 
 	      "Terms of service", 
-	      new Contact("Humberto Cervantes", "www.humbertocervantes.net", "hcm@xanum.uam.mx"), 
+	      new Contact("Brenda Corella", "www.humbertocervantes.net", "corellabrenda@gmail.com"), 
 	      "License of API", "API license URL", Collections.emptyList());
     }
 }

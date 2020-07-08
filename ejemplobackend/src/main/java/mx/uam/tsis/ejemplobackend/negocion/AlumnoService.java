@@ -3,6 +3,8 @@ package mx.uam.tsis.ejemplobackend.negocion;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -41,7 +43,40 @@ public Alumno create(Alumno nuevoAlumno) {
 	public Iterable <Alumno> retrieveAll () {
 		return alumnoRepository.findAll();
 	}
+
+
+	public Alumno retrieve(Integer matricula) {
+		
+		  Optional<Alumno> alumno=alumnoRepository.findById(matricula);
+		  return alumno.get();
+	}
+
+
+	public Alumno update(@Valid Integer matricula, @Valid Alumno nuevoAlumno) {
+		if(alumnoRepository.existsById(matricula)) {
+			return alumnoRepository.save(nuevoAlumno);
+		}else
+			return null;
+	}
+	public boolean delete(Integer matricula) {
+		if (alumnoRepository.existsById(matricula)) {
+			alumnoRepository.deleteById(matricula);
+			return true;
+		}else 
+		{
+			return false;
+		}
+	}
 	
+	public Alumno findByMatricula(Integer matricula) {
+
+		// LÃ³gica de negocio
+		
+		Optional <Alumno> alumnoOpt = alumnoRepository.findById(matricula);
+		
+		return alumnoOpt.get();
+	}
+
 	
 	
 }
